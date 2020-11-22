@@ -90,6 +90,18 @@
             <li><img src="star.png" alt="star"></li>
         </ul>
         <!-- Star Images -->
+        <!-- Sound -->
+        <audio src="producerspot-sfx-01.wav" data-sound="1"></audio>
+        <audio src="producerspot-sfx-02.wav" data-sound="2"></audio>
+        <audio src="producerspot-sfx-03.wav" data-sound="3"></audio>
+        <audio src="producerspot-sfx-04.wav" data-sound="4"></audio>
+        <audio src="producerspot-sfx-05.wav" data-sound="5"></audio>
+        <audio src="producerspot-sfx-06.wav" data-sound="6"></audio>
+        <audio src="producerspot-sfx-07.wav" data-sound="7"></audio>
+        <audio src="producerspot-sfx-08.wav" data-sound="8"></audio>
+        <audio src="producerspot-sfx-09.wav" data-sound="9"></audio>
+        <audio src="producerspot-sfx-10.wav" data-sound="10"></audio>
+        <!-- Sound -->
     </div>
 
     <!-- Javascript here -->
@@ -105,8 +117,16 @@
 
             // Displays the random number
             const result = document.querySelector(".result");
-            result.innerHTML = randNo[Math.floor(Math.random() * randNo.length)]
+            result.innerHTML = randNo[Math.floor(Math.random() * randNo.length)];
             // Displays the random number
+
+
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                if (result.innerHTML !== audio.dataset.sound) return;
+                audio.play();
+                console.log(audio.dataset.sound, audio.attributes.src);
+            })
         }
 
 
