@@ -5,10 +5,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chinese Numbers</title>
+    <!-- CSS  -->
+    <style>
+        .container,
+        .buttons,
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .container {
+            border: 4px solid gray;
+            width: 400px;
+            margin: 50px auto;
+            background: #E9F1D1;
+            flex-direction: column;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .play {
+            padding: 10px 20px;
+            margin: 0px 0px 20px 0px;
+        }
+
+        .buttons {
+            width: 330px;
+            flex-wrap: wrap;
+
+        }
+
+        .buttons>button {
+            padding: 10px 20px;
+            margin: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-right: 20px;
+
+        }
+
+        img {
+            max-width: 100%;
+            height: 150px;
+            width: 250px;
+            object-fit: cover;
+        }
+    </style>
+    <!-- CSS  -->
+
 </head>
 
 <body>
+    <div class="container">
 
+        <h1>Chinese Numbers</h1>
+        <h1 class="result">3</h1>
+        <button class="play">Play</button>
+
+        <div class="buttons">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>10</button>
+        </div>
+        <!-- Star Images -->
+
+        <ul class="stars">
+            <li><img src="star.png" alt="star"></li>
+            <li><img src="star.png" alt="star"></li>
+            <li><img src="star.png" alt="star"></li>
+            <li><img src="star.png" alt="star"></li>
+            <li><img src="star.png" alt="star"></li>
+        </ul>
+        <!-- Star Images -->
+    </div>
+
+    <!-- Javascript here -->
+    <script>
+        // Random Number initializer
+        const randNo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        // Gets the Play button
+        const play = document.querySelector(".play");
+
+        // It performs everything here when a user clicks the play button;
+        function getRandomNo() {
+
+            // Displays the random number
+            const result = document.querySelector(".result");
+            result.innerHTML = randNo[Math.floor(Math.random() * randNo.length)]
+            // Displays the random number
+        }
+
+
+        // Listen for a click Event on the play button(When a user clicks the play button);
+        play.addEventListener("click", getRandomNo);
+    </script>
 </body>
 
 </html>
