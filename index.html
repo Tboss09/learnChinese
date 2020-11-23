@@ -168,6 +168,8 @@
 
 
         <!-- Sound -->
+        <!-- Maria, make sure to change the sounds -->
+        <!-- You dont really need to know about the data-sound now, it is more like expert stuff -->
         <audio src="producerspot-sfx-01.wav" data-sound="1"></audio>
         <audio src="producerspot-sfx-02.wav" data-sound="2"></audio>
         <audio src="producerspot-sfx-03.wav" data-sound="3"></audio>
@@ -206,14 +208,15 @@
 
             play.disabled = true;
             const result = document.querySelector(".result");
-
+            // This generate a 
             result.innerHTML = randNumber[Math.floor(Math.random() * randNumber.length)];
-            // Displays the random number
-            console.log(result.innerHTML);
 
-            // Plays each audio for each element
 
+            //This contains a block of code that is gonna for the audio to play
             playAudio();
+
+
+            //This contains a block of code that is gonna for the buttin when clicked
             clickOneToTenBUtton()
 
 
@@ -226,7 +229,6 @@
                 let score = 0;
 
                 // Enables each button when the play button is clicked
-
                 button.forEach(btn => btn.disabled = false);
                 // 👆👆 search for this.... 
 
@@ -276,7 +278,7 @@
                     return;
                 }));
 
-                // This clears the 1-10 button each time the play button is pressed, Maria, you could add some text or 
+                // This clears the 1-10 button each time the play button is pressed, 
                 button.forEach(btn => {
                     p.innerHTML = "";
                     p.setAttribute("class", "");
@@ -290,20 +292,20 @@
             }
 
 
-            // Plays the audio in accordiance to the random number
             function playAudio() {
                 const audios = document.querySelectorAll('audio');
                 audios.forEach(audio => {
-                    if (result.innerHTML !== audio.dataset.sound) {
+
+                    // This select audio with dataSound
+                    const dataSound = audio.dataset.sound;
+                    if (result.innerHTML !== dataSound) {
                         return;
-
                     }
-
+                    // Plays the audio in if it is equal to random number to the random number
                     audio.play();
                     // console.log(audio.dataset.sound, audio.attributes.src);
                 });
             }
-
 
         }
 
