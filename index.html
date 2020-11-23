@@ -179,7 +179,6 @@
     <!-- Javascript here -->
     <script>
         // Select all audio
-        const audios = document.querySelectorAll('audio');
 
         const starImage = document.querySelectorAll(" .yellow");
 
@@ -196,15 +195,16 @@
         const button = document.querySelectorAll(".buttons button");
         button.forEach(btn => btn.disabled = true);
 
+
         // It performs everything here when a user clicks the play button;
         function getRandomNo() {
-
+            play.disabled = true;
             // Displays the random number
             const result = document.querySelector(".result");
             result.innerHTML = randNo[Math.floor(Math.random() * randNo.length)];
             // Displays the random number
 
-
+            // Plays each audio for each element
             playAudio();
 
             // Enables each button when the play button is clicked
@@ -214,13 +214,14 @@
 
 
             button.forEach(btn => btn.addEventListener("click", () => {
+                play.disabled = false;
 
                 //    If the user answer is wrong,this is shown
                 if (btn.innerHTML !== result.innerHTML) {
                     p.innerHTML = "Incorrect";
                     p.setAttribute("class", "wrong");
-        starImage.forEach(svg => svg.style.fill = "grey")
-                 
+                    starImage.forEach(svg => svg.style.fill = "grey")
+                    btn.classList.add("wrong");
                     return;
                 }
 
@@ -229,13 +230,14 @@
                 p.innerHTML = "Correct";
                 p.setAttribute("class", "correct");
                 playAudio();
-        starImage.forEach(svg => svg.style.fill = "yellow")
-
+                starImage.forEach(svg => svg.style.fill = "yellow")
                 return;
+                
             }));
 
             // Plays the audio in acordance to the random number
             function playAudio() {
+                const audios = document.querySelectorAll('audio');
                 audios.forEach(audio => {
                     if (result.innerHTML !== audio.dataset.sound) return;
                     audio.play();
