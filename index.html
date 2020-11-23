@@ -219,6 +219,8 @@
                 if (btn.innerHTML !== result.innerHTML) {
                     p.innerHTML = "Incorrect";
                     p.setAttribute("class", "wrong");
+        starImage.forEach(svg => svg.style.fill = "grey")
+                 
                     return;
                 }
 
