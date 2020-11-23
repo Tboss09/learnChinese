@@ -85,7 +85,7 @@
     <div class="container">
 
         <h1>Chinese Numbers</h1>
-        <h1 class="result"></h1>
+        <h1 class="result" style="display: none;"></h1>
         <button class="play">Play</button>
         <!-- Number Buttons -->
         <div class="buttons">
@@ -209,6 +209,7 @@
 
             result.innerHTML = randNumber[Math.floor(Math.random() * randNumber.length)];
             // Displays the random number
+            console.log(result.innerHTML);
 
             // Plays each audio for each element
 
@@ -221,10 +222,13 @@
 
 
             function clickOneToTenBUtton() {
+                //   This regularizes the (star) images;
                 let score = 0;
 
                 // Enables each button when the play button is clicked
+
                 button.forEach(btn => btn.disabled = false);
+                // 👆👆 search for this.... 
 
                 // This works when any of the ten button is clicked (except the Play buttons)
                 button.forEach(btn => btn.addEventListener("click", () => {
@@ -232,7 +236,7 @@
                     play.disabled = false;
 
 
-                    //    If the user answer is wrong,this is shown
+                    //    If the user's answer is wrong,this is shown
                     if (btn.innerHTML !== result.innerHTML) {
                         p.innerHTML = "Incorrect";
                         p.setAttribute("class", "wrong");
@@ -240,27 +244,42 @@
                         return;
                     }
 
-                    //    else if the user answer is right,this
+                    //    else if the user's answer is right,this happens
+                    // Play around, change color of this👇👇 or any other to blue or any color and observe the effect
                     btn.removeAttribute("background", "grey");
                     btn.setAttribute("class", "green")
                     p.setAttribute("class", "correct");
                     p.innerHTML = "Correct";
                     playAudio();
 
+
+                    // Each time the answer of the user is correct, this happens 
                     setTimeout(() => {
+
+                        // This gives the image a bg of yellow
                         starImage[score].style.fill = "yellow";
-                        score++;
+
+                        // This loops over each img and gives it a bg of yellow each time the user answer is correct
+                        score = score + 1;
+
+                        // When user have gotten 5 stars, this happens
                         if (score >= 5) {
-                            alert("Congrats,you won the game")
+
+                            alert("Congrats,you won the game");
+
+
+                            // This reloads the page 
                             location.reload()
                         }
+
                     }, 400);
                     return;
                 }));
 
+                // This clears the 1-10 button each time the play button is pressed, Maria, you could add some text or 
                 button.forEach(btn => {
                     p.innerHTML = "";
-                    p.setAttribute('class', "");
+                    p.setAttribute("class", "");
 
                     btn.setAttribute("background", "grey");
                     btn.removeAttribute("class", "green");
@@ -271,11 +290,15 @@
             }
 
 
-            // Plays the audio in acordance to the random number
+            // Plays the audio in accordiance to the random number
             function playAudio() {
                 const audios = document.querySelectorAll('audio');
                 audios.forEach(audio => {
-                    if (result.innerHTML !== audio.dataset.sound) return;
+                    if (result.innerHTML !== audio.dataset.sound) {
+                        return;
+
+                    }
+
                     audio.play();
                     // console.log(audio.dataset.sound, audio.attributes.src);
                 });
