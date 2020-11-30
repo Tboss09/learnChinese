@@ -194,20 +194,25 @@
         let h1 = document.querySelector(".result");
         const buttonFromOneToTen = document.querySelectorAll(".buttons button");
 
+        buttonFromOneToTen.forEach(btn => btn.disabled = true)
+
+
         function startGame() {
             const randomNumber = num[Math.floor(Math.random() * num.length)]
-            h1.innerHTML = randomNumber;
             // return;
-
-
+            h1.innerHTML = randomNumber;
+            playButton.disabled = true;
+            buttonFromOneToTen.forEach(btn => btn.disabled = false)
+            
             buttonFromOneToTen.forEach(btn => btn.addEventListener("click", (e) => {
                 e.preventDefault();
+                playButton.disabled = false;
                 if (btn.innerHTML === h1.innerHTML) {
                     btn.classList.add("correct");
-                    bnt
                 }
+               
             }))
-
+            
         }
 
         playButton.addEventListener("click", startGame)
