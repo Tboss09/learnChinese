@@ -193,18 +193,74 @@
 
     <!-- Javascript here -->
     <script>
-        // Get The Play Button;
+        // All button except the play button
+        const btnFromOneToTen = document.querySelectorAll(".buttons button");
+
+        // Play Button
         const playButton = document.querySelector(".play");
-        // ButtonFromOneToTen
-        const buttonFromOneToTen = document.querySelectorAll(".buttons button")
 
-        // Starts Game
+
+        // Random Number;
+
+
+
+
+        // Disable button on page load 
+        disableButton(true);
+
+        // This happens when the play button is clicked;
         function startGame() {
-        }
-           buttonFromOneToTen.forEach(button => {})
 
-        // Listen for a click Event on the play button 
-        playButton.addEventListener("click", startGame);
+            const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const randomNumber = num[Math.floor(Math.random() * num.length)];
+
+            disableButton(false);
+            playAudioToCorrespondingButtonNumber();
+            btnFromOneToTen.forEach(button => button.addEventListener("click", allButtonFromTenToOne));
+            disableplayButton(true)
+
+
+        }
+
+        function disableButton(value) {
+            btnFromOneToTen.forEach(btn => btn.disabled = value);
+
+        }
+
+
+        function disableplayButton(value) {
+            playButton.disabled = value;
+
+        }
+
+
+        // Any of the buttons from one to ten 
+        function allButtonFromTenToOne() {
+
+            disableButton(true);
+            disableplayButton(false)
+            // console.log();
+        }
+
+        // Plays Audio To Corresponding Button Number
+        function playAudioToCorrespondingButtonNumber() {
+            const audios = document.querySelectorAll("[data-sound]");
+
+            // for each audio
+            audios.forEach(audio => {
+                if (audio.dataset.sound == randomNumber) {
+                    audio.play();
+                    console.log(audio.duration);
+                    return;
+                    console.log(audio);
+                }
+                return;
+
+            })
+        }
+
+        // Get the Play Button
+        playButton.addEventListener("click", startGame)
     </script>
 </body>
 
