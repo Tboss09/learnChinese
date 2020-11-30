@@ -52,7 +52,7 @@
 
 
 
-        .green {
+        .correct {
             background: #008000;
         }
 
@@ -63,10 +63,6 @@
             text-align: center;
         }
 
-        .correct {
-            background: #ffff00 !important;
-
-        }
 
         .wrong,
         .red {
@@ -193,7 +189,28 @@
 
     <!-- Javascript here -->
     <script>
-        
+        const playButton = document.querySelector(".play");
+        const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        let h1 = document.querySelector(".result");
+        const buttonFromOneToTen = document.querySelectorAll(".buttons button");
+
+        function startGame() {
+            const randomNumber = num[Math.floor(Math.random() * num.length)]
+            h1.innerHTML = randomNumber;
+            // return;
+
+
+            buttonFromOneToTen.forEach(btn => btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (btn.innerHTML === h1.innerHTML) {
+                    btn.classList.add("correct");
+                    bnt
+                }
+            }))
+
+        }
+
+        playButton.addEventListener("click", startGame)
     </script>
 </body>
 
