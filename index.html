@@ -193,60 +193,7 @@
 
     <!-- Javascript here -->
     <script>
-        const btnFromOneToTen = document.querySelectorAll(".buttons button");
-        const playButton = document.querySelector(".play");
-        let h1 = document.querySelector(".result").innerHTML;
-
-
-
-        // Disable button on page load 
-        disableButton(true);
-
-        // This happens when the play button is clicked;
-        function startGame() {
-
-            disableButton(false);
-            randomNumberGenerator()
-            playAudioEqualToRandomNumber()
-            btnFromOneToTen.forEach(button => button.addEventListener("click", allButtonFromTenToOne));
-            disableplayButton(true)
-        }
-
-        function disableButton(value) {
-            btnFromOneToTen.forEach(btn => btn.disabled = value);
-        }
-
-
-        function disableplayButton(value) {
-            playButton.disabled = value;
-        }
-
-
-
-        function randomNumberGenerator() {
-            const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-            return h1 = num[Math.floor(Math.random() * num.length)];
-            
-        }
         
-            function playAudioEqualToRandomNumber() {
-                const audios = document.querySelectorAll("[data-sound]");
-                audios.forEach(audio =>{
-                    if(audio.dataset.sound == randomNumberGenerator() ){
-                        console.log(audio);
-                    }
-                })
-            }
-        // Any of the buttons from one to ten 
-        function allButtonFromTenToOne() {
-            disableButton(true);
-            disableplayButton(false)
-            // console.log();
-        }
-
-
-        // Get the Play Button
-        playButton.addEventListener("click", startGame)
     </script>
 </body>
 
