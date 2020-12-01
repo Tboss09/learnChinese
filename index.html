@@ -198,21 +198,34 @@
         let h1 = document.querySelector(".result");
         const buttonFromOneToTen = document.querySelectorAll(".buttons button");
 
+        const allAudio = document.querySelectorAll("[data-sound]");
+        // Yellow Stars
+        let starAward = document.querySelectorAll(".awardStar");
+
         // UpdateStarScores
-        let UpdateStarScores = 0;
+        let updateStarScores;
+        // 
         showResult = document.querySelector(".answer")
+
+        // Makes button disabled on load 
         buttonFromOneToTen.forEach(btn => btn.disabled = true)
 
         function startGame() {
-            const randomNumber = num[Math.floor(Math.random() * num.length)]
-            h1.innerHTML = randomNumber;
+            updateStarScores = 0;
+
 
             playButton.disabled = true;
+            // Play Audio
+            randomNumberGenerator();
+            playAudioToRandomNumber();
+            // Play Audio
 
             buttonFromOneToTen.forEach(btn => btn.addEventListener("click", () => {
                 playButton.disabled = false;
                 buttonFromOneToTen.forEach(btn => btn.disabled = true)
+
                 if (btn.innerHTML == h1.innerHTML) {
+                    updateStarScores = 0;
                     btn.classList.add("correct")
                     showResult.innerHTML = "Your Answer's Correct";
                     // showResult.classList.add("correctResult");
@@ -221,6 +234,26 @@
 
                     //    Award
 
+                    setTimeout(() => {
+                        // This gives the image a bg of yellow
+                        starAward[updateStarScores].style.fill = "yellow";
+                        console.log(updateStarScores);
+                        // This loops over each img and gives it a bg of yellow each time the user answer is correct
+                        // When user have gotten 5 stars, this happens
+                        updateStarScores++;
+
+                        setTimeout(() => {
+                            if (updateStarScores >= starAward.length) {
+                                alert("Congrats,you won the game");
+                                // This reloads the page 
+                                location.reload();
+                                return;
+                            }
+
+                        }, 500);
+
+                    }, 500);
+                    return;
 
                 } else {
                     btn.classList.add("wrong");
@@ -246,52 +279,42 @@
                     showResult.removeAttribute("class");
                     // Stars Award
 
-
-                }, 1000);
+                }, 500);
             });
+
+
 
         }
 
+        function randomNumberGenerator() {
+
+            const randomNumber = num[Math.floor(Math.random() * num.length)]
+            h1.innerHTML = randomNumber;
+        }
+
+
+        // Plays Audio
+        function playAudioToRandomNumber
+        () {
+            allAudio.forEach(audio => {
+                if (audio.dataset.sound == h1.innerHTML) {
+                    audio.play();
+                   audio.onended= function (){
+                       console.log("Audio has ended");
+                   }
+                    let audioDuration = (Math.round(audio.duration * 1000));
+                    console.log(audioDuration,audio);
+                    return audioDuration;
+                    // console.log(audio.dataset.sound, audioDuration);
+                }
+            })
+            return;
+        }
+
+        // Plays Audio
         playButton.addEventListener("click", startGame)
     </script>
 </body>
 
 
 </html>
-<!-- 
-// Disable button on page load 
-disableButton(true);
-
-// This happens when the play button is clicked;
-function startGame() {
-
-    const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const randomNumber = num[Math.floor(Math.random() * num.length)];
-
-    disableButton(false);
-    playAudioToCorrespondingButtonNumber();
-    btnFromOneToTen.forEach(button => button.addEventListener("click", allButtonFromTenToOne));
-    disableplayButton(true)
-
-
-}
-
-function disableButton(value) {
-    btnFromOneToTen.forEach(btn => btn.disabled = value);
-
-}
-
-
-function disableplayButton(value) {
-    playButton.disabled = value;
-
-}
-
-
-// Any of the buttons from one to ten 
-function allButtonFromTenToOne() {
-
-    disableButton(true);
-    disableplayButton(false)
-    // console.log();
-} -->
